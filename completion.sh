@@ -5,3 +5,4 @@
 [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && . /usr/share/git-core/contrib/completion/git-prompt.sh
 [ -r /etc/bash_completion.d/git ] && . /etc/bash_completion.d/git
 which kubectl &> /dev/null && source <(kubectl completion bash)
+which helm &> /dev/null && source <(helm completion bash)
