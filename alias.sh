@@ -8,4 +8,3 @@ git_link(){
 	git branch --set-upstream-to=origin/$1 $1
 }
 
-alias packer="$HOME/bin/packer"
