@@ -37,6 +37,7 @@ fi
 echo -en ${BLUE} \W
 echo -en " ${YELLOW}"
 __git_ps1 "%s "
+print_environment
 if [[ $RET == 0 ]]
 then echo -en ${GREEN}\342\234\223
 else echo -en ${RED}\342\234\227
