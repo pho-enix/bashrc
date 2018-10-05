@@ -1,8 +1,17 @@
 #!/bin/bash
 
-[[ -s $HOME/azure.completion.sh ]] && source $HOME/azure.completion.sh
-[[ -s /usr/bin/aws_completer ]] && complete -C '/usr/bin/aws_completer' aws
+install_completion(){
+	BINPATH=$(which $1)
+	if [[ $? -eq 0 ]] ; then
+		complete -C $BINPATH $1
+	fi
+}
+
 [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && . /usr/share/git-core/contrib/completion/git-prompt.sh
 [ -r /etc/bash_completion.d/git ] && . /etc/bash_completion.d/git
 which kubectl &> /dev/null && source <(kubectl completion bash)
 which helm &> /dev/null && source <(helm completion bash)
+
+install_completion aws_completer
+install_completion vault
+
