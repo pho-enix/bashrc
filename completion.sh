@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install_completion(){
-	BINPATH=$(which $1)
+	BINPATH=$(which $1 2> /dev/null)
 	if [[ $? -eq 0 ]] ; then
 		complete -C $BINPATH $1
 	fi
