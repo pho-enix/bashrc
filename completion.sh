@@ -18,5 +18,3 @@ which helm &> /dev/null && source <(helm completion bash)
 
 install_completion aws_completer
 install_completion vault
-
-source /Users/sepoehn/git/roxtar/cf-complete/cf.completion.bash
