@@ -7,14 +7,19 @@ install_completion(){
 	fi
 }
 
-[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && . /usr/share/git-core/contrib/completion/git-prompt.sh
-[ -r /etc/bash_completion.d/git ] && . /etc/bash_completion.d/git
+source_completion(){
+	COMPLETION="$1"
+	[ -r $COMPLETION ] && . $COMPLETION
+}
 
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-[ -r /usr/local/etc/bash_completion.d/git-completion.bash ] && . /usr/local/etc/bash_completion.d/git-completion.bash
+for GIT_COMPLETION in "/usr/share/git-core/contrib/completion/git-prompt.sh" "/etc/bash_completion.d/git" "/usr/local/etc/bash_completion.d/git-prompt.sh" "/usr/local/etc/bash_completion.d/git-completion.bash" "/etc/bash_completion.d/git-prompt" ; do
+	source_completion $GIT_COMPLETION
+done
 
 which kubectl &> /dev/null && source <(kubectl completion bash)
 which helm &> /dev/null && source <(helm completion bash)
 
 install_completion aws_completer
 install_completion vault
+
+complete -C '/usr/local/bin/aws_completer' aws
